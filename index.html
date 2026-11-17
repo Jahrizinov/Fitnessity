@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101211">
+  <title>Fitnessity | Train slimmer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar d-none d-lg-flex flex-column p-4">
+      <a href="#" class="brand mb-5 text-decoration-none" data-page="home">FITNESSITY<span>.</span><small>TRAIN SMARTER</small></a>
+      <nav class="d-grid gap-2" aria-label="Hoofdnavigatie">
+        <button class="nav-link-app active" data-page="home">⌂ &nbsp; Dashboard</button>
+        <button class="nav-link-app" data-page="exercises">▦ &nbsp; Oefeningen</button>
+        <button class="nav-link-app" data-page="workouts">▣ &nbsp; Workouts</button>
+        <button class="nav-link-app" data-page="progress">↗ &nbsp; Voortgang</button>
+        <button class="nav-link-app" data-page="nutrition">◉ &nbsp; Voeding</button>
+        <button class="nav-link-app" data-page="profile">⚙ &nbsp; Profiel</button>
+      </nav>
+      <div class="sidebar-footer mt-auto">Jouw inzet. Jouw resultaat.</div>
+    </aside>
+
+    <main class="main-content container-fluid py-4 px-3 px-md-5">
+      <header class="app-header d-flex justify-content-between align-items-center mb-4">
+        <div><p class="eyebrow mb-1">FITNESSITY / JOUW TRAINING</p><h1 id="pageTitle" class="h3 fw-bold mb-0">Dashboard</h1></div>
+        <button class="avatar-btn" data-page="profile" aria-label="Open profiel" id="avatar">S</button>
+      </header>
+
+      <section id="page-home" class="page active">
+        <div class="hero p-4 p-lg-5 mb-4">
+          <span class="eyebrow">YOU VS. YOU</span>
+          <h2 class="display-5 fw-black mt-2 mb-2">ELKE REP<br><span>TELT.</span></h2>
+          <p class="text-soft mb-4" id="greeting">Bouw aan jouw beste versie.</p>
+          <button class="btn btn-accent" data-page="workouts">Start een workout →</button>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-xl-3"><div class="panel stat"><span>Workouts deze week</span><strong id="statWeek">0</strong><small>Afgerond</small></div></div>
+          <div class="col-6 col-xl-3"><div class="panel stat"><span>Trainingstijd</span><strong id="statMinutes">0</strong><small>Minuten deze week</small></div></div>
+          <div class="col-6 col-xl-3"><div class="panel stat"><span>Sets gedaan</span><strong id="statSets">0</strong><small>Deze week</small></div></div>
+          <div class="col-6 col-xl-3"><div class="panel stat"><span>Jouw doel</span><strong class="stat-goal" id="statGoal">Spieropbouw</strong><small>Blijf doorgaan</small></div></div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-7"><div class="panel h-100">
+            <p class="eyebrow">EXCLUSIEF BIJ FITNESSITY</p><h3>FIT PULSE<span class="accent">.</span></h3>
+            <p class="text-soft">Hoeveel energie heb je vandaag? Wij raden een workout aan.</p>
+            <div class="d-flex gap-2 flex-wrap mb-3" id="pulseButtons">
+              <button class="btn btn-soft" data-pulse="low">Rustig</button>
+              <button class="btn btn-soft" data-pulse="medium">Normaal</button>
+              <button class="btn btn-soft" data-pulse="high">Veel energie</button>
+            </div>
+            <div class="recommendation" id="pulseRecommendation"></div>
+          </div></div>
+          <div class="col-lg-5"><div class="panel h-100">
+            <p class="eyebrow">JOUW VOLGENDE STAP</p><h3>Trainingsschema's</h3>
+            <p class="text-soft">Kies snel een workout of maak je eigen schema.</p>
+            <button class="btn btn-accent w-100 mt-2" data-page="workouts">Bekijk workouts →</button>
+          </div></div>
+        </div>
+      </section>
+
+      <section id="page-exercises" class="page" aria-label="Oefeningen">
+        <div class="library-heading section-heading"><div><p class="eyebrow mb-2">BOUW JOUW TRAINING</p><h2>Vind jouw beweging.</h2><p>Ontdek oefeningen, bekijk de uitvoering en vind een alternatief dat bij je past.</p></div>
+          <button class="btn btn-accent" data-bs-toggle="collapse" data-bs-target="#newExercise">+ Eigen oefening</button></div>
+        <div class="library-stats"><div><span class="library-stat-icon" aria-hidden="true">↗</span><div><strong id="exerciseTotal">0</strong><span>oefeningen om uit te kiezen</span></div></div><button data-library-view="like"><span aria-hidden="true">♡</span><div><strong id="exerciseLiked">0</strong><span>jouw favorieten</span></div></button><button data-library-view="avoid"><span aria-hidden="true">⊘</span><div><strong id="exerciseAvoided">0</strong><span>liever overslaan</span></div></button></div>
+        <div class="collapse mb-3" id="newExercise"><form id="exerciseForm" class="panel row g-3">
+          <div class="col-md-6"><label class="form-label" for="newExerciseName">Naam</label><input class="form-control" id="newExerciseName" required maxlength="60" placeholder="Bijv. Cable fly"></div>
+          <div class="col-md-6"><label class="form-label" for="newExerciseGroup">Spiergroep</label><select class="form-select" id="newExerciseGroup"><option>Borst</option><option>Rug</option><option>Benen</option><option>Schouders</option><option>Armen</option><option>Buik</option></select></div>
+          <div class="col-12"><label class="form-label" for="newExerciseMovement">Beweging (voor passende alternatieven)</label><select class="form-select" id="newExerciseMovement"><option value="">Zelfde spiergroep</option></select></div>
+          <div class="col-4"><label class="form-label" for="newExerciseSets">Sets</label><input class="form-control" id="newExerciseSets" type="number" min="1" max="10" value="3" required></div>
+          <div class="col-4"><label class="form-label" for="newExerciseReps">Reps</label><input class="form-control" id="newExerciseReps" type="number" min="1" max="100" value="10" required></div>
+          <div class="col-4"><label class="form-label" for="newExerciseRest">Rust (sec)</label><input class="form-control" id="newExerciseRest" type="number" min="0" max="600" value="60" required></div>
+          <div class="col-12"><button class="btn btn-accent" type="submit">Oefening opslaan</button></div>
+        </form></div>
+        <div class="library-toolbar"><div class="library-search"><label for="exerciseSearch">Zoek een oefening</label><input type="search" class="form-control" id="exerciseSearch" placeholder="Bijv. squat, dumbbell of biceps"></div><div><label for="equipmentFilter">Materiaal</label><select class="form-select" id="equipmentFilter"><option value="">Alle materialen</option></select></div><div><label for="exercisePreference">Jouw selectie</label><select class="form-select" id="exercisePreference"><option value="">Alle oefeningen</option><option value="like">Favorieten</option><option value="avoid">Liever niet</option></select></div></div>
+        <input type="hidden" id="muscleFilter" value="">
+        <div id="muscleChips" class="filter-chips" role="group" aria-label="Filter op spiergroep"></div>
+        <div class="library-results"><p id="exerciseResultCount" class="mb-0" role="status" aria-live="polite"></p><button class="btn btn-soft btn-sm" id="resetExerciseFilters">Filters wissen</button></div>
+        <div id="exerciseList" class="row g-3"></div>
+      </section>
+
+      <section id="page-workouts" class="page" aria-label="Workouts">
+        <div class="training-banner mb-4"><div><p class="eyebrow mb-2">JOUW TEMPO. JOUW PROGRESSIE.</p><h2>KLAAR VOOR<br><span>JE VOLGENDE REP?</span></h2><p class="text-soft mb-0">Kies je training. Zet je focus aan.</p></div><div class="banner-mark" aria-hidden="true">///</div></div>
+        <div class="section-heading"><div><h2>Jouw workouts</h2><p>Geef aan welke schema’s je fijn vindt. Je voorkeuren tellen mee in FIT PULSE.</p></div>
+          <button class="btn btn-accent" data-bs-toggle="collapse" data-bs-target="#newWorkout">+ Eigen schema</button></div>
+        <div class="collapse mb-4" id="newWorkout"><form class="panel" id="workoutForm">
+          <label class="form-label" for="newWorkoutName">Naam van het schema</label><input class="form-control mb-3" id="newWorkoutName" maxlength="60" required placeholder="Bijv. Push day">
+          <label class="form-label">Kies oefeningen</label><div class="chooser mb-3" id="exerciseChooser"></div>
+          <button class="btn btn-accent" type="submit">Schema opslaan</button>
+        </form></div>
+        <div id="resumeWorkout" class="mb-3"></div>
+        <div id="workoutFilters" class="filter-chips mb-4" role="group" aria-label="Filter workouts"></div>
+        <div class="row g-3" id="workoutCards"></div>
+        <div class="panel mt-4"><h3 class="h5 mb-3">Laatste trainingen</h3><div id="workoutHistory"></div></div>
+      </section>
+
+      <section id="page-plan" class="page" aria-labelledby="planTitle">
+        <button class="btn btn-soft mb-4" data-page="workouts">← Alle workouts</button>
+        <div class="plan-header"><div><p class="eyebrow">MAAK DEZE TRAINING VAN JOU</p><h2 id="planTitle" tabindex="-1"></h2><p id="planDescription" class="text-soft"></p></div><div id="planMetrics" class="plan-metrics"></div></div>
+        <div id="planSource"></div>
+        <div class="section-heading mb-3"><div><h3 class="h5 fw-bold">Kies je oefeningen</h3><p>Wissel voor een vergelijkbare beweging, of sla een oefening over. Je keuzes blijven bewaard.</p></div><button class="btn btn-soft btn-sm" id="resetWorkoutChoices">Standaard terugzetten</button></div>
+        <div id="planExercises" class="plan-exercises"></div>
+        <div class="plan-start"><p id="planStartHint" class="mb-0 text-soft"></p><button class="btn btn-accent" id="beginWorkout">▶ Start mijn training</button></div>
+      </section>
+
+      <section id="page-session" class="page" aria-labelledby="sessionTitle">
+        <div class="session-topbar"><button class="btn btn-soft" data-page="workouts">← Overzicht</button><span class="session-live"><span></span> TRAINING ACTIEF</span><span class="session-brand">FITNESSITY<span class="accent">.</span></span></div>
+        <div class="session-heading"><div><p class="eyebrow mb-2">FOCUS OP JE VOLGENDE SET</p><h1 id="sessionTitle" tabindex="-1">Workout</h1><p class="text-soft mb-0">Jouw training, op jouw manier. Elke set brengt je verder.</p></div><div class="session-time"><span>TRAININGSTIJD</span><strong id="workoutTime">00:00</strong></div></div>
+        <div class="session-layout">
+          <div><div class="session-section-heading"><h2>Jouw oefeningen</h2><span id="sessionExerciseCount" class="text-soft"></span></div><p class="text-soft small">Wissel een oefening via ‘Alternatieven’. Met ‘Liever niet’ sla je resterende sets over en zie je meteen andere opties.</p><div id="sessionExercises"></div></div>
+          <aside class="session-summary" aria-label="Trainingsoverzicht">
+            <div class="panel session-progress"><p class="eyebrow">BLIJF BOUWEN</p><strong id="workoutSetCount">0 / 0</strong><span class="text-soft">sets afgerond</span><div id="sessionProgress" class="progress mt-3" role="progressbar" aria-label="Afgeronde sets" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="sessionProgressBar" class="progress-bar"></div></div><p id="sessionProgressHint" class="small text-soft mt-3 mb-0">Klaar voor je eerste set?</p></div>
+            <div class="rest-panel mt-3"><div class="d-flex align-items-center justify-content-between"><small>RUSTTIMER</small><span aria-hidden="true">◷</span></div><div class="rest-time" id="restTime">00:00</div><p class="small text-soft" id="restHint">Start na elke afgeronde set.</p><button class="btn btn-soft w-100" id="skipRest">Rust overslaan →</button></div>
+            <div class="session-actions"><button class="btn btn-accent w-100" id="finishWorkout">✓ Training afronden</button><button class="btn btn-stop w-100" id="cancelWorkout">Training stoppen</button><small class="text-soft">Je sets worden automatisch tussentijds bewaard.</small></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="page-progress" class="page" aria-label="Voortgang">
+        <div class="section-heading"><div><h2>Jouw voortgang</h2><p>Bekijk je uitgevoerde trainingen en persoonlijke records.</p></div></div>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4"><div class="panel stat"><span>Alle workouts</span><strong id="progressWorkouts">0</strong><small>Afgerond</small></div></div>
+          <div class="col-md-4"><div class="panel stat"><span>Totale trainingsduur</span><strong id="progressMinutes">0</strong><small>Minuten</small></div></div>
+          <div class="col-md-4"><div class="panel stat"><span>Totaal aantal sets</span><strong id="progressSets">0</strong><small>Voltooid</small></div></div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-7"><div class="panel h-100"><h3 class="h5">Workouts in de afgelopen 7 dagen</h3><div class="week-chart" id="weekChart"></div></div></div>
+          <div class="col-lg-5"><div class="panel h-100"><h3 class="h5">Persoonlijke records</h3><p class="text-soft small">Hoogste opgeslagen gewicht per oefening.</p><div id="recordsList"></div></div></div>
+        </div>
+      </section>
+
+      <section id="page-nutrition" class="page" aria-label="Voeding">
+        <div class="section-heading"><div><h2>Voedingstracker</h2><p>Houd vandaag je calorieën en eiwitten bij.</p></div></div>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4"><div class="panel stat"><span>Calorieën vandaag</span><strong id="foodCalories">0</strong><small>kcal</small><div class="progress mt-3"><div id="calorieBar" class="progress-bar" style="width:0%"></div></div><small id="calorieHint">Van jouw dagdoel</small></div></div>
+          <div class="col-md-4"><div class="panel stat"><span>Eiwitten vandaag</span><strong id="foodProtein">0</strong><small>gram</small></div></div>
+          <div class="col-md-4"><div class="panel stat"><span>Maaltijden</span><strong id="foodMeals">0</strong><small>Vandaag geregistreerd</small></div></div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-5"><form id="foodForm" class="panel"><h3 class="h5 mb-3">Maaltijd toevoegen</h3>
+            <label class="form-label" for="foodName">Naam</label><input class="form-control mb-3" id="foodName" maxlength="80" placeholder="Bijv. Kwark met fruit" required>
+            <label class="form-label" for="foodType">Maaltijdmoment</label><select class="form-select mb-3" id="foodType"><option>Ontbijt</option><option>Lunch</option><option>Avondeten</option><option>Snack</option></select>
+            <div class="row g-2 mb-3"><div class="col-6"><label class="form-label" for="foodKcal">Calorieën (kcal)</label><input class="form-control" type="number" id="foodKcal" min="0" max="10000" required></div>
+            <div class="col-6"><label class="form-label" for="foodProteinInput">Eiwit (gram)</label><input class="form-control" type="number" id="foodProteinInput" min="0" max="1000" step="0.1" required></div></div>
+            <button class="btn btn-accent w-100" type="submit">Maaltijd opslaan</button>
+            <p class="text-soft small mt-3 mb-0">Dit is handmatige registratie, geen foto- of barcodescanner.</p>
+          </form></div>
+          <div class="col-lg-7"><div class="panel h-100"><h3 class="h5 mb-3">Vandaag gegeten</h3><div id="foodList"></div></div></div>
+        </div>
+      </section>
+
+      <section id="page-profile" class="page" aria-label="Profiel">
+        <div class="section-heading"><div><h2>Profiel en instellingen</h2><p>Maak Fitnessity persoonlijk.</p></div></div>
+        <form class="panel profile-form" id="profileForm">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label" for="profileName">Weergavenaam</label><input class="form-control" id="profileName" maxlength="40" required></div>
+            <div class="col-md-6"><label class="form-label" for="profileGoal">Trainingsdoel</label><select class="form-select" id="profileGoal"><option>Spieropbouw</option><option>Afvallen</option><option>Conditie</option><option>Gezond blijven</option></select></div>
+            <div class="col-md-6"><label class="form-label" for="profileKcal">Dagdoel calorieën (kcal)</label><input class="form-control" type="number" id="profileKcal" min="500" max="10000" required></div>
+            <div class="col-md-6"><label class="form-label" for="profileUnit">Gewichtseenheid</label><select class="form-select" id="profileUnit"><option value="kg">Kilogram (kg)</option><option value="lbs">Pond (lbs)</option></select></div>
+          </div>
+          <button class="btn btn-accent mt-4" type="submit">Instellingen opslaan</button>
+        </form>
+        <div class="panel mt-3"><h3 class="h5">Gegevens verwijderen</h3><p class="text-soft">Verwijder alle lokaal opgeslagen workouts, maaltijden en profielgegevens.</p><button class="btn btn-outline-danger" id="clearData">Alle gegevens wissen</button></div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-nav d-lg-none" aria-label="Mobiele navigatie">
+    <button class="mobile-link active" data-page="home"><b>⌂</b><span>Home</span></button>
+    <button class="mobile-link" data-page="exercises"><b>▦</b><span>Oefeningen</span></button>
+    <button class="mobile-link" data-page="workouts"><b>▣</b><span>Workouts</span></button>
+    <button class="mobile-link" data-page="progress"><b>↗</b><span>Voortgang</span></button>
+    <button class="mobile-link" data-page="nutrition"><b>◉</b><span>Voeding</span></button>
+    <button class="mobile-link" data-page="profile"><b>⚙</b><span>Profiel</span></button>
+  </nav>
+
+  <dialog id="alternativeDialog" class="alternative-dialog" aria-labelledby="alternativeTitle" aria-describedby="alternativeDescription">
+    <div class="alternative-dialog-header"><div><p class="eyebrow mb-2">JOUW TRAINING. JOUW KEUZE.</p><h2 id="alternativeTitle"></h2></div><button class="dialog-close" id="closeAlternatives" aria-label="Alternatieven sluiten">×</button></div>
+    <p id="alternativeDescription" class="text-soft"></p>
+    <label class="form-label" for="alternativeEquipment">Filter op materiaal</label><select class="form-select mb-3" id="alternativeEquipment"><option value="">Alle materialen</option></select>
+    <div id="alternativeList" class="alternative-list"></div>
+    <p class="alternative-footnote">Kies een uitvoering en gewicht die bij je passen. Aantallen en rust worden aangepast aan je nieuwe oefening.</p>
+  </dialog>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="appToast" class="toast border-0" role="status" aria-live="polite"><div class="toast-body" id="toastMessage"></div></div></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
